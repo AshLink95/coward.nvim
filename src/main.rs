@@ -1,14 +1,15 @@
-// vibed
+// prompt engineered
 mod trie;
 mod db;
 mod manager;
+mod load_english;
 use std::io::{self, Write};
 
 use crate::manager::TrieManager;
 
 fn main() -> rusqlite::Result<()> {
-    println!("🌲 Trie Manager with SQLite");
-    println!("============================\n");
+    println!("🌲 Trie Manager with Rust and SQLite");
+    println!("====================================\n");
     
     // Initialize with database
     let mut manager = TrieManager::new("dictionary.db")?;
@@ -35,7 +36,7 @@ fn main() -> rusqlite::Result<()> {
                 if manager.add_word(word)? {
                     println!("✓ Added '{}'", word);
                 } else {
-                    println!("ℹ '{}' already exists", word);
+                    println!("🛇 '{}' already exists", word);
                 }
             }
             
@@ -77,7 +78,11 @@ fn main() -> rusqlite::Result<()> {
             Some('l') => {
                 manager.trie.debug();
             }
-            
+
+            // Some('E') => {
+            //     load_english(&mut manager.trie);
+            // }
+            //
             Some('q') => {
                 println!("Goodbye!");
                 break;
