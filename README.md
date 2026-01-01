@@ -1,4 +1,7 @@
-# coward.nvim
+[![Neovim](https://img.shields.io/badge/neovim-0.11.5-green.svg)](https://neovim.io/)
+[![LuaJIT](https://img.shields.io/badge/luajit-2.1-blue.svg)](https://luajit.org/)
+[![Rust](https://img.shields.io/badge/rust-1.92-orange.svg)](https://www.rust-lang.org/)
+# <div align=center>coward.nvim</div>
 coward.nvim is a neovim plugin for natural language autocompletion built on Rust.
 
 This project also offers a CLI tool for manual addition and inspection.
