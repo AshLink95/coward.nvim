@@ -17,6 +17,10 @@ shutil.copy( "target/release/coward", "./cowardCLI")
 
 # Read input file and insert into SQLite
 db = sqlite3.connect("coward.db")
+db.execute("""CREATE TABLE IF NOT EXISTS words (
+                word TEXT PRIMARY KEY,
+                added_at INTEGER DEFAULT (strftime('%s', 'now'))
+)""")
 with open("insert_english.txt") as f:
     db.executemany(
         "INSERT OR IGNORE INTO words (word) VALUES (?)",
