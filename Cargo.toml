@@ -4,13 +4,22 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+mlua = { version = "0.11.5", features = ["luajit", "module"] }
 rusqlite = "0.38.0"
 
-[profile.release]
-opt-level = 3          # Max speed
-codegen-units = 1      # Cross-crate inlining (slower compile) [web:364]
-lto = "fat"            # Link-time optimization (big speed/binary wins) [web:364]
-panic = "abort"        # Smaller binaries (no unwind info)
-strip = true           # Remove debug symbols [web:366]
+[lib]
+name = "coward"
+crate-type = ["cdylib"]
 
-# RUSTFLAGS="-C target-cpu=native -C lto=fat" cargo build --release --target x86_64-unknown-linux-gnu
+[[bin]]
+name = "coward"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = "s" #3 for speed, "z" for size
+codegen-units = 1
+lto = "fat"
+panic = "abort"
+strip = true
+
+# RUSTFLAGS="-C target-cpu=native -C force-frame-pointers=no" cargo build --release
