@@ -5,7 +5,7 @@ pub struct TrieDB {
     conn: Connection,
 }
 
-pub const DB_PATH: &str = "coward.db";
+pub const DB_PATH: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/coward.db");
 
 impl TrieDB {
     pub fn new(path: &str) -> Result<Self> {

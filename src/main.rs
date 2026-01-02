@@ -11,8 +11,9 @@ fn main() -> rusqlite::Result<()> {
     println!("=================================================\n");
     
     // Initialize with database
+
+    println!("Loading dictionary from database...");
     let mut manager = TrieManager::new(db::DB_PATH)?;
-    
     println!("Dictionary loaded with {} words\n", manager.db.word_count()?);
     
     // Interactive loop

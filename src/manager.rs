@@ -13,11 +13,9 @@ impl TrieManager {
         let mut trie = Trie::new();
         
         // Load all words from DB into trie
-        println!("Loading dictionary from database...");
         for word in db.get_all_words()? {
             trie.insert(&word);
         }
-        println!("Loaded {} words", db.word_count()?);
         
         Ok(Self { trie, db })
     }
